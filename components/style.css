@@ -1,0 +1,220 @@
+body {
+  background: #f5f1e6 url('https://www.transparenttextures.com/patterns/cream-paper.png');
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+
+.sudoku-container {
+  background: #fff9e8;
+  padding: 2.5rem;
+  border-radius: 2px;
+  box-shadow: 
+    0 0 15px rgba(0, 0, 0, 0.1),
+    inset 0 0 100px rgba(139, 69, 19, 0.1);
+  text-align: center;
+  width: fit-content;
+  max-width: 95vw;
+  border: 1px solid #d2b48c;
+  position: relative;
+}
+
+.sudoku-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0) 50%
+  );
+  pointer-events: none;
+}
+h1 {
+  color: #5a4a3a;
+  margin: 0 0 1.5rem 0;
+  font-family: 'Palatino', serif;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  font-size: 2.2rem;
+}
+
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(30px, 1fr));
+  grid-template-rows: repeat(9, minmax(30px, 1fr));
+  gap: 1px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 3px solid #58381b;
+  background: #8b5a2b;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1/1;
+}
+
+.sudoku-row {
+  display: contents;
+}
+
+.sudoku-cell {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: bold;
+  border: 1px solid #c9b18b;
+  background: #fff9e8;
+  outline: none;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Georgia', serif;
+  color: #3a3226;
+  cursor: pointer;
+}
+
+.sudoku-cell:nth-child(3n) {
+  border-right: 4px solid #5a2d00 !important;
+  margin-right: -1px; 
+}
+
+.sudoku-cell:nth-child(3n + 1) {
+  border-left: 4px solid #5a2d00 !important;
+  margin-left: -1px;
+}
+.sudoku-cell:nth-child(3n + 1) {
+  border-left: 4px solid #5a2d00 !important;
+  margin-left: -1px;
+}
+.sudoku-row:nth-child(3n) .sudoku-cell {
+  border-bottom: 4px solid #5a2d00 !important;
+  margin-bottom: -1px;
+}
+
+.sudoku-row:nth-child(3n + 1) .sudoku-cell {
+  border-top: 4px solid #5a2d00 !important;
+  margin-top: -1px;
+}
+.prewritten {
+  background: #f0e6d2;
+  color: #2a2118;
+  font-weight: bold;
+}
+
+.incorrect {
+  background: #ffebee;
+  color: #c7254e;
+  border: 1px solid #c7254e !important;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+.highlight {
+  background: #e8e0d0;
+  box-shadow: 
+    inset 0 0 8px rgba(139, 125, 101, 0.5),
+    0 0 0 2px rgba(91, 55, 13, 0.3);
+}
+
+.same-number {
+  background: #d9c7a7;
+  box-shadow: inset 0 0 10px rgba(91, 55, 13, 0.2);
+}
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.timer {
+  font-size: 1.1rem;
+  font-weight: bold;
+  background: #8b5a2b;
+  color: #f0e6d2;
+  padding: 8px 15px;
+  border-radius: 3px;
+  min-width: 80px;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+.btn {
+  padding: 10px 22px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  background: #8b5a2b;
+  color: #f0e6d2;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 120px;
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+  background: #6b3e0a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.solve-btn {
+  background: #5a7247;
+  margin-bottom: 6px;
+  margin-right: 6px;
+}
+
+.solve-btn:hover {
+  background: #485d39;
+}
+
+.hint-btn {
+  background: #6b5d45;
+}
+
+.hint-btn:hover {
+  background: #5a4a3a;
+}
+
+.hint-btn.disabled {
+  background: #d3c8b8;
+  color: #8a7d6d;
+  cursor: not-allowed;
+}
+@media (max-width: 500px) {
+  .sudoku-container {
+    padding: 1.5rem;
+    width: 95vw;
+  }
+  
+  .sudoku-board {
+    max-width: 95vw;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    min-width: 100px;
+  }
+}
